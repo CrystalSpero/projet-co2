@@ -1,5 +1,6 @@
 <template>
     <nav class="nav-header">
+      <ul class="nav">
         <li :class="{ active: activeItem === 'Login' }" @mouseover="setActiveItem('login')">
             <router-link class="routerLink" to="/login"> Login </router-link>
         </li>
@@ -30,6 +31,7 @@
         <li :class="{ active: activeItem === 'about' }" @mouseover="setActiveItem('About')">
             <router-link class="routerLink" to="/about"> About </router-link>
         </li>
+      </ul>
     </nav>
 </template>
 <script>
