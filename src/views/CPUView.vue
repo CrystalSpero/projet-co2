@@ -32,13 +32,10 @@ export default {
     data() {
         return {
             emissions: null,
-            regions: null
+            regions: null,
+            provider: 'azure', // Default provider
+
         };
-    },
-    watch: {
-        provider(newProvider) {
-            this.region = this.regions[newProvider][0];
-        }
     },
     mounted: function() {
         this.GetRegions()
