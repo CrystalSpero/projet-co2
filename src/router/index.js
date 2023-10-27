@@ -2,21 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
     {
-        path: '/home',
-        name: 'home',
-        component: () => import('../views/PageAccueil.vue')
-    },
-    {
-        path: '/connexion-m',
-        name: 'conM',
-        component: () => import('../views/MicrosoftAuth.vue')
-    },
-    {
-        path: '/connexion-g',
-        name: 'conG',
-        component: () => import('../views/GoogleAuth.vue')
-    },
-    {
         path: '/flights',
         name: 'flights',
         component: () => import('../views/FlightsView.vue')
@@ -37,7 +22,7 @@ const routes = [
         component: () => import('../views/AboutUs.vue')
     },
     {
-        path: '/login',
+        path: '/',
         name: 'login',
         component: () => import('../views/LoginView.vue')
     },

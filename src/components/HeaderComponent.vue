@@ -1,11 +1,8 @@
 <template>
     <nav class="nav-header">
       <ul class="nav">
-        <li :class="{ active: activeItem === 'Login' }" @mouseover="setActiveItem('login')">
-            <router-link class="routerLink" to="/login"> Login </router-link>
-        </li>
         <li :class="{ active: activeItem === 'Home' }" @mouseover="setActiveItem('home')">
-            <router-link class="routerLink" to="/home"> Home </router-link>
+            <router-link class="routerLink" to="/"> Home </router-link>
         </li>
         <li :class="{ active: activeItem === 'Flights' }" @mouseover="setActiveItem('flights')">
             <router-link class="routerLink" to="/flight"> Flights </router-link>
@@ -31,12 +28,18 @@
         <li :class="{ active: activeItem === 'about' }" @mouseover="setActiveItem('About')">
             <router-link class="routerLink" to="/about"> About </router-link>
         </li>
+        <login-view/>
       </ul>
     </nav>
 </template>
 <script>
+
+  import LoginView from '@/views/LoginView.vue';
   export default {
     name: 'HeaderComponent',
+    components: {
+      LoginView,
+    },
     data() {
       return {
         activeItems: [],
