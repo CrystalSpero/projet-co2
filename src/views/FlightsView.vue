@@ -5,14 +5,14 @@
 
         <!-- From choose -->
         <label for="from">From :</label>
-        <select v-if="from" v-model="selectedFrom" id="from">
-            <option v-for="fromtxt in from.response" v-bind:key="fromtxt.iata_code" :value="fromtxt.iata_code"> {{fromtxt.name + " : " + fromtxt.iata_code}}</option>
+        <select v-if="filteredFrom.length > 0" v-model="selectedFrom" id="from">
+            <option v-for="fromtxt in filteredFrom" v-bind:key="fromtxt.iata_code" :value="fromtxt.iata_code"> {{fromtxt.name + " : " + fromtxt.iata_code}}</option>
         </select><br><br>
-        
+
         <!-- To choose -->
         <label for="to">To :</label>
-        <select v-if="to" v-model="selectedTo" id="to">
-            <option v-for="totxt in to.response" v-bind:key="totxt.iata_code" :value="totxt.iata_code"> {{totxt.name + " : " + totxt.iata_code}}</option>
+        <select v-if="filteredTo.length > 0" v-model="selectedTo" id="to">
+            <option v-for="totxt in filteredTo" v-bind:key="totxt.iata_code" :value="totxt.iata_code"> {{totxt.name + " : " + totxt.iata_code}}</option>
         </select><br><br>
 
         <!-- Passengers number choose -->
@@ -34,6 +34,7 @@
             <h2>Emissions Data:</h2>
             <p>{{ emissions.co2e.toFixed(4) + " kg of CO2e" }}</p>
         </div>
+
     </div>
 </template>
 
@@ -51,6 +52,20 @@ export default {
             legs: [],
 
         };
+    },
+    computed: {
+    filteredFrom() {
+        if (this.from && this.from.response) {
+            return this.from.response.filter(item => item && item.iata_code);
+        }
+        return [];
+        },
+        filteredTo() {
+            if (this.to && this.to.response) {
+                return this.to.response.filter(item => item && item.iata_code);
+            }
+            return [];
+        }
     },
     mounted: function() {
         this.GetFrom()
