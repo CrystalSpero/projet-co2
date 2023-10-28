@@ -1,6 +1,9 @@
 <template>
     <nav class="nav-header">
       <ul class="nav">
+        <div class="logo-container">
+          <img :src="require('../assets/logo.png')" alt="Logo" class="logo" />
+        </div>
         <li :class="{ active: activeItem === 'Home' }" @mouseover="setActiveItem('home')">
             <router-link class="routerLink" to="/"> Home </router-link>
         </li>
@@ -65,76 +68,94 @@
 
 
 <style scoped>
+    @import url('https://fonts.googleapis.com/css2?family=Viga&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
   body {
-  margin:0;
+    margin: 0;
   }
 
   ul {
-  list-style: none;
+    list-style: none;
   }
 
-  .routerLink{
+  .routerLink {
     text-decoration: none;
     color: inherit;
   }
+
   .icon {
-    max-width:160px;
-    height:auto;
+    max-width: 160px;
+    height: auto;
   }
 
   .nav {
-    background-color: #00B8A9;
-    display:flex;
+    background-color: #000000b2;
+    display: flex;
     align-items: center;
     margin: 0;
-    font-family: 'Quicksand',sans-serif;
+    font-family: 'Viga', sans-serif;
     list-style-type: none;
     padding: 0;
     justify-content: center;
-    color: black;
-    text-decoration:none;
-    
-
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 20px;
   }
+
   .nav li {
     padding: 10px 20px;
     cursor: pointer;
-    color: black;
-    text-decoration:none;
-    
-    
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 20px;
   }
 
   .nav li.active:hover {
     border-radius: 5px;
-    background-color: #c3eaed;
-    color: black;
-    text-decoration:none;
-    
+    background-color: #000000b2;
+    color: white;
   }
 
   .dropdown {
     position: relative;
-
   }
 
   .dropdown-content {
-    
     display: none;
     position: absolute;
-    background-color: #87e2d9;
+    background-color: #000000b2;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
-    color: black;
-    text-decoration:none;
-    
+    color: white;
+    list-style: none;
   }
 
   .dropdown:hover .dropdown-content {
     display: block;
-    color: black;
-    text-decoration:none;
-    
+    color: white;
   }
+
+  .dropdown-content ul {
+    list-style: none;
+  }
+
+  .dropdown-content ul li {
+    text-decoration: none;
+    color: white;
+  }
+
+.logo-container {
+  display: flex;
+  justify-content: left;
+  align-items: left;
+}
+
+.logo {
+  max-width: 15%; /* Assurez-vous que l'image ne dépasse pas la largeur du container */
+  height: auto;
+}
 </style>

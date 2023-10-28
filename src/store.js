@@ -22,10 +22,7 @@ export default createStore({
   actions: {
     async signIn({ commit }) {
       const user = await signInAndGetUser()
-      //console.log(user)
-      console.log(user.name)
       commit('setUser', user)
-      console.log("après", this.state.user.name)
     },
     async signOut({ commit }) {
       await signOut()

@@ -3,23 +3,23 @@
         <h2>FLIGHTS</h2>
 
         <!-- From choose -->
-        <label for="from">From :</label>
+        <label for="from">From :   </label>
         <select v-if="filteredFrom.length > 0" v-model="selectedFrom" id="from">
             <option v-for="fromtxt in filteredFrom" v-bind:key="fromtxt.iata_code" :value="fromtxt.iata_code"> {{fromtxt.name + " : " + fromtxt.iata_code}}</option>
         </select><br><br>
 
         <!-- To choose -->
-        <label for="to">To :</label>
+        <label for="to">To :   </label>
         <select v-if="filteredTo.length > 0" v-model="selectedTo" id="to">
             <option v-for="totxt in filteredTo" v-bind:key="totxt.iata_code" :value="totxt.iata_code"> {{totxt.name + " : " + totxt.iata_code}}</option>
         </select><br><br>
 
         <!-- Passengers number choose -->
-        <label for="passengers">Passengers :</label>
+        <label for="passengers">Passengers :   </label>
         <input v-model="passengers" id="passengers" type="number"><br><br>
 
         <!-- Class choose -->
-        <label for="class">Class :</label>
+        <label for="class">Class :   </label>
         <select v-model="classs" id="class">
             <option value="unknown">Unknown</option>
             <option value="economy">Economy</option>
@@ -36,7 +36,7 @@
 
         <!-- Chart Container -->
         <div>
-            <canvas ref="myChart" style="margin: 300px"></canvas>
+            <canvas ref="myChart" style="width: 200;"></canvas>
         </div>
 
     </div>
@@ -66,7 +66,6 @@ export default {
             classs: null,
             legs: [],
             myChart: null, 
-
         };
     },
     computed: {
@@ -181,30 +180,39 @@ export default {
 </script>
 
 <style scoped>
-    div{
-        margin:0;
+    @import url('https://fonts.googleapis.com/css2?family=Viga&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+    
+    .body {
+        text-align: center;
+        background-color: #000000b2;
+        font-family: 'Viga', sans-serif;
+        font-weight: bold;
+        font-size: 25px;
+        color: white; /* Couleur du texte en blanc */
     }
-    .body{
+
+    label {
+        font-family: 'Viga', sans-serif;
+        font-size: 20px;
         text-align: center;
     }
-    .input{
-    width: 300px;
-    height: 20px;
-    text-align: center;
-    font-family: 'Quicksand',sans-serif;
-    border-radius: 15px;
-    border: 3px solid #D4C6C6;
-    background: #FFF;
-    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.25);
-    top: 50%;
-    left: 50%;
-    margin-bottom: 10px;
-    padding: 10px;
-  }
-  .label{
-    font-family: 'Quicksand',sans-serif;
-    color:rgb(19, 19, 95);
-    font-size: 20px;
-    margin-bottom: 50px;
-  }
+
+    select, input {
+        border: 3px solid white;
+        border-radius: 5px;
+        color: black;
+        font-family: 'Lato', sans-serif;
+        font-weight: bold;
+    }
+
+    button {
+        font-size: 20px;
+    }
+
+    canvas {
+        opacity: 10;
+        color: white;
+    }
+
 </style>
