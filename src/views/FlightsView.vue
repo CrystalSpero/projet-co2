@@ -133,6 +133,42 @@ export default {
                 })
             .catch(err => console.log('Fetch went wrong : ', err))   //If error
         },
+
+        createChart(label, value) {
+            // Create a new chart using Chart.js
+            const ctx = this.$refs.myChart;
+
+            // Define layout options
+            const layoutOptions = {
+                fullSize: true, // Adjust this based on your layout requirements
+            };
+
+            //Initialize the chart
+            this.myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: [label],
+                    datasets: [{
+                        label: 'CO2e Emissions',
+                        data: [value],
+                        backgroundColor: 'rgba(255, 255 , 0, 0.2)',
+                        borderColor: 'rgba(255, 255 , 0, 1)',
+                        borderWidth: 2,
+                    }],
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                        },
+                    },
+                },
+                plugins: {
+                    layout: layoutOptions,
+                },
+            });
+        },
+
         generateChartData() {
             // Extract data for the chart
             const label = `${this.selectedFrom} - ${this.selectedTo}, Passengers: ${this.passengers}, Class: ${this.classs}`;
@@ -146,31 +182,6 @@ export default {
             } else {
                 this.createChart(label, value);
             }
-        },
-
-        createChart(label, value) {
-            // Create a new chart using Chart.js
-            const ctx = this.$refs.myChart;
-            this.myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: [label],
-                    datasets: [{
-                        label: 'CO2e Emissions',
-                        data: [value],
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1,
-                    }],
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                        },
-                    },
-                },
-            });
         },
         httpCheckCodeAndParseJson (response) {
             return response.ok ? response.json() : Promise.reject(response.json())
