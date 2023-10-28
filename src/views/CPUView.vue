@@ -1,6 +1,9 @@
 <template>
     <div class="body">
         <h1>CO2 Emission Calculator</h1>
+        <h2>CPU</h2>
+
+        <!-- Provider choose -->
         <label for="provider_id">Provider:</label>
         <select v-model="provider" id="provider">
             <option value="azure">Azure</option>
@@ -8,23 +11,29 @@
             <option value="gcp">GCP</option>
         </select><br><br>
 
+        <!-- Region choose -->
         <label for="region">Region:</label>
         <select v-if="regions" v-model="region" id="region">
             <option v-for="regiontxt in regions.cloud_providers[provider].cpu_regions" v-bind:key="regiontxt" :value="regiontxt"> {{regiontxt}}</option>
         </select><br><br>
 
-
+        <!-- Count of CPU choose -->
         <label for="cpu_count">CPU Count:</label>
         <input v-model="cpu_count" id="cpu-count" type="number"><br><br>
 
+        <!-- CPU Load choose -->
+        <label for="cpu_load">CPU Load:</label>
+        <input v-model="cpu_load" id="cpu-load" type="number"><br><br>
+
+        <!-- Duration choose -->
         <label for="duration">Duration:</label>
         <input v-model="duration" id="duration" type="number"><br><br>
 
+        <!-- Calculate the emissions of CO2e -->
         <button @click="Go">Calculate Emissions</button>
-
         <div v-if="emissions">
             <h2>Emissions Data:</h2>
-            <p>{{ emissions }}</p>
+            <p>{{ emissions.co2e.toFixed(4) + " kg of CO2e" }}</p>
         </div>
     </div>
 </template>
@@ -37,6 +46,7 @@ export default {
             regions: null,
             cpu_load: null,
             duration: null,
+            cpu_count: null,
             provider: 'azure', // Default provider
 
         };
@@ -63,7 +73,7 @@ export default {
         },
         Go() {
             //this.GetRegions()
-            console.log(this.region)
+            //console.log(this.region)
             const apiKey = "77K5DJ9QQSMFGYNN8PK8MAW6NEDY";
             const theUrl = `https://beta3.api.climatiq.io/compute/${this.provider}/cpu`;
             window.fetch(theUrl, {  
@@ -74,10 +84,10 @@ export default {
                     'Content-Type': 'application/json;charset=utf-8'
                 },
                 body: JSON.stringify ({
-                    "cpu_count": 1,
+                    "cpu_count": this.cpu_count,
                     "region": this.region,
-                    "cpu_load": 1,
-                    "duration": 1,
+                    "cpu_load": this.cpu_load,
+                    "duration": this.duration,
                     "duration_unit": "h"
                 })
             })
