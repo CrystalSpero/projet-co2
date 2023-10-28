@@ -34,11 +34,17 @@
             <p>{{ emissions.co2e.toFixed(4) + " kg of CO2e" }}</p>
         </div>
 
+        <!-- Chart Container -->
+        <div>
+            <canvas ref="myChart" style="margin: 300px"></canvas>
+        </div>
+
     </div>
 </template>
 
 <script>
 import store from '@/store';
+import Chart from 'chart.js/auto';
 
 export default {
     name: 'FlightsView',
@@ -59,6 +65,7 @@ export default {
             passengers: null,
             classs: null,
             legs: [],
+            myChart: null, 
 
         };
     },
@@ -120,9 +127,51 @@ export default {
                     ]
                 })
             })
-            .then(this.httpCheckCodeAndParseJson) //if Ok, convert to JSON
-            .then(data => this.emissions = data)   //Then update emissions
+            .then(this.httpCheckCodeAndParseJson) //if Ok, cyonvert to JSON
+            .then(data => {
+                this.emissions = data;
+                this.generateChartData(); // Use an arrow function to access this.generateChartData
+                })
             .catch(err => console.log('Fetch went wrong : ', err))   //If error
+        },
+        generateChartData() {
+            // Extract data for the chart
+            const label = `${this.selectedFrom} - ${this.selectedTo}, Passengers: ${this.passengers}, Class: ${this.classs}`;
+            const value = this.emissions ? this.emissions.co2e : 0;
+
+            // Create or update the chart
+            if (this.myChart) {
+                this.myChart.data.labels = [label];
+                this.myChart.data.datasets[0].data = [value];
+                this.myChart.update();
+            } else {
+                this.createChart(label, value);
+            }
+        },
+
+        createChart(label, value) {
+            // Create a new chart using Chart.js
+            const ctx = this.$refs.myChart;
+            this.myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: [label],
+                    datasets: [{
+                        label: 'CO2e Emissions',
+                        data: [value],
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1,
+                    }],
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                        },
+                    },
+                },
+            });
         },
         httpCheckCodeAndParseJson (response) {
             return response.ok ? response.json() : Promise.reject(response.json())
