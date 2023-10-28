@@ -9,8 +9,10 @@
         </select><br><br>
 
         <label for="region">Region:</label>
-        <input v-model="region" id="region" type="text"><br><br>
-        <p>{{ regions }}</p>
+        <select v-if="regions" v-model="region" id="region">
+            <option v-for="regiontxt in regions.cloud_providers[provider].cpu_regions" v-bind:key="regiontxt" :value="regiontxt"> {{regiontxt}}</option>
+        </select><br><br>
+
 
         <label for="cpu_count">CPU Count:</label>
         <input v-model="cpu_count" id="cpu-count" type="number"><br><br>
@@ -33,6 +35,8 @@ export default {
         return {
             emissions: null,
             regions: null,
+            cpu_load: null,
+            duration: null,
             provider: 'azure', // Default provider
 
         };
