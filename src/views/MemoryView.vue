@@ -45,7 +45,18 @@
 </template>
 
 <script>
+import store from '@/store';
+
+
 export default {
+    name: 'MemoryView',
+    beforeRouteEnter (to , from, next) {
+        if (store.state.user && store.state.user.name) {
+            next();
+        } else {
+            next('/');
+        }
+    },
     data() {
         return {
             emissions: null,

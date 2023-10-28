@@ -23,7 +23,6 @@
                 isSigninButtonLoggedIn: false,
 
                 //Pour le SigninButton
-                color: 'primary',
                 dropdownOpen: false,
             }
         },
