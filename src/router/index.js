@@ -2,8 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
     {
-        path: '/flights',
-        name: 'flights',
+        path: '/flight',
+        name: 'flight',
         component: () => import('../views/FlightsView.vue')
     },
     {
