@@ -4,6 +4,7 @@ import { signInAndGetUser, signOut } from './lib/microsoftGraph.js'
 export default createStore({
   state: {
     user: null,
+    userName: null,
   },
   getters: {
     getUser(state) {
@@ -13,6 +14,9 @@ export default createStore({
   mutations: {
     setUser(state, user) {
       state.user = user
+    },
+    setUserName(state, userName) {
+      state.userName = userName;
     },
   },
   actions: {

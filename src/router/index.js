@@ -12,19 +12,9 @@ const routes = [
         component: () => import('../views/GraphView.vue')
     },
     {
-        path: '/custom',
-        name: 'custom',
-        component: () => import('../views/CustomView.vue')
-    },
-    {
         path: '/about',
         name: 'about',
         component: () => import('../views/AboutUs.vue')
-    },
-    {
-        path: '/',
-        name: 'login',
-        component: () => import('../views/LoginView.vue')
     },
     {
         path: '/CPU',
@@ -45,6 +35,6 @@ const routes = [
 const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
     routes
-  })
-  
-  export default router
+})
+
+export default router

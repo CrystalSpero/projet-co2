@@ -1,5 +1,6 @@
 <template>
   <base-layout>
+    <h1>CO2 Emission Calculator</h1>
     <router-view/>
   </base-layout>
 </template>

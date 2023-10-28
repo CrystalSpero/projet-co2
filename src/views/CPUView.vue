@@ -1,6 +1,5 @@
 <template>
     <div class="body">
-        <h1>CO2 Emission Calculator</h1>
         <h2>CPU</h2>
 
         <!-- Provider choose -->
@@ -21,10 +20,6 @@
         <label for="cpu_count">CPU Count:</label>
         <input v-model="cpu_count" id="cpu-count" type="number"><br><br>
 
-        <!-- CPU Load choose -->
-        <label for="cpu_load">CPU Load:</label>
-        <input v-model="cpu_load" id="cpu-load" type="number"><br><br>
-
         <!-- Duration choose -->
         <label for="duration">Duration:</label>
         <input v-model="duration" id="duration" type="number"><br><br>
@@ -44,7 +39,6 @@ export default {
         return {
             emissions: null,
             regions: null,
-            cpu_load: null,
             duration: null,
             cpu_count: null,
             provider: 'azure', // Default provider
@@ -86,7 +80,6 @@ export default {
                 body: JSON.stringify ({
                     "cpu_count": this.cpu_count,
                     "region": this.region,
-                    "cpu_load": this.cpu_load,
                     "duration": this.duration,
                     "duration_unit": "h"
                 })

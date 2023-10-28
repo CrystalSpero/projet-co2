@@ -28,7 +28,16 @@
         <li :class="{ active: activeItem === 'about' }" @mouseover="setActiveItem('About')">
             <router-link class="routerLink" to="/about"> About </router-link>
         </li>
-        <login-view/>
+        <li>
+            <div class="dropdown">
+              <!-- On change le Login en le nom du l'utilisateur s'il est connecté -->
+              <span v-if="$store.state.userName">{{ $store.state.userName }}</span>
+              <span v-else>Login</span>
+              <div class="dropdown-content">
+                <login-view/>
+              </div>
+            </div>
+          </li>
       </ul>
     </nav>
 </template>
@@ -53,6 +62,8 @@
     },
   };
   </script>
+
+
 <style scoped>
   body {
   margin:0;

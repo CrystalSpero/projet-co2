@@ -1,6 +1,5 @@
 <template>
     <div class="body">
-        <h1>CO2 Emission Calculator</h1>
         <h2>FLIGHTS</h2>
 
         <!-- From choose -->
