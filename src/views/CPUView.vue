@@ -115,6 +115,7 @@ export default {
         font-weight: bold;
         font-size: 25px;
         color: white; /* Couleur du texte en blanc */
+        margin-bottom: 50px; /* Ajoutez cette ligne */
     }
 
     label {

@@ -1,15 +1,9 @@
 <template>
-    <div class="about-us">
-      <h1>ABOUT US</h1>
-      <p>
-        Notre application vise à mesurer l'impact des activités sur l'environnement en termes d'émissions de gaz à effet de serre. Nous utilisons l'API Climatiq pour calculer le taux de CO2 émis pour une activité donnée par l'utilisateur.
-      </p>
-      <p>
-        Les utilisateurs peuvent se connecter via Microsoft OAuth et Google OAuth, et une fois connectés, ils peuvent choisir de calculer leurs émissions de CO2 pour différentes activités, y compris les activités de cloud computing, les vols et les activités personnalisées.
-      </p>
-      <p>
-        Nous fournissons également des comparaisons graphiques des émissions de CO2 pour aider les utilisateurs à comprendre leur impact sur l'environnement.
-      </p>
+    <div class="body">
+      <h2>ABOUT US</h2>
+      <p>Our application aims to measure the impact of activities on the environment in terms of greenhouse gas emissions. We use the Climatiq API to calculate the rate of CO2 emitted for an activity given by the user.</p>
+      <p>Users can log in via Microsoft OAuth and Google OAuth, and once logged in, they can choose to calculate their CO2 emissions for different activities, including cloud computing activities, flights, and custom activities.</p>
+      <p>We also provide graphical comparisons of CO2 emissions to help users understand their impact on the environment when traveling by plane.</p>
     </div>
   </template>
   
@@ -19,18 +13,33 @@
   };
   </script>
   
-  <style scoped>
-  .about-us {
-    padding: 20px;
-  }
-  
-  .about-us h1 {
-    font-size: 2em;
-    margin-bottom: 20px;
-  }
-  
-  .about-us p {
-    font-size: 1.2em;
-    line-height: 1.6;
-  }
-  </style>
+<style>
+  .body {
+    text-align: center;
+    background-color: #000000b2;
+    font-family: 'Viga', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    color: white; /* Couleur du texte en blanc */
+    margin-bottom: 50px; /* Ajoutez cette ligne */
+}
+
+label {
+    font-family: 'Viga', sans-serif;
+    font-size: 20px;
+    text-align: center;
+}
+
+select, input {
+    border: 3px solid white;
+    border-radius: 5px;
+    color: black;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+}
+
+button {
+    font-size: 20px;
+}
+
+</style>
