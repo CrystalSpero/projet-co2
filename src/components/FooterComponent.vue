@@ -12,7 +12,7 @@
     @import url('https://fonts.googleapis.com/css2?family=Viga&display=swap');
 
     p {
-    background-color: #000000b2;
+    background-color: #000000d7;
     margin: 0;
     font-family: 'Viga', sans-serif;
     color: white;

@@ -134,13 +134,14 @@ export default {
             .catch(err => console.log('Fetch went wrong : ', err))   //If error
         },
 
+        //!Partie génération du graphique
+        
         createChart(label, value) {
-            // Create a new chart using Chart.js
             const ctx = this.$refs.myChart;
 
             // Define layout options
             const layoutOptions = {
-                fullSize: true, // Adjust this based on your layout requirements
+                fullSize: true, 
             };
 
             //Initialize the chart
@@ -196,7 +197,7 @@ export default {
     
     .body {
         text-align: center;
-        background-color: #000000b2;
+        background-color: #000000d7;
         font-family: 'Viga', sans-serif;
         font-weight: bold;
         font-size: 25px;

@@ -16,6 +16,8 @@
             <option v-for="regiontxt in regions.cloud_providers[provider].cpu_regions" v-bind:key="regiontxt" :value="regiontxt"> {{regiontxt}}</option>
         </select><br><br>
 
+        <!--{{  regions }}--> 
+        
         <!-- Count of CPU choose -->
         <label for="cpu_count">CPU Count:</label>
         <input v-model="cpu_count" id="cpu-count" type="number"><br><br>
@@ -39,7 +41,7 @@ import store from '@/store';
 export default {
     name: 'CPUView',
     beforeRouteEnter (to , from, next) {
-        if (store.state.user && store.state.user.name) {
+        if (store.state.user || store.state.user.name) {
             next();
         } else {
             next('/');
@@ -110,12 +112,12 @@ export default {
     
     .body {
         text-align: center;
-        background-color: #000000b2;
+        background-color: #000000d7;
         font-family: 'Viga', sans-serif;
         font-weight: bold;
         font-size: 25px;
         color: white; /* Couleur du texte en blanc */
-        margin-bottom: 50px; /* Ajoutez cette ligne */
+        margin-bottom: 50px;
     }
 
     label {

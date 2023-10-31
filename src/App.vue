@@ -51,7 +51,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100px; /* Ajustez la hauteur selon vos besoins */
-  background-color: #000000b2;
+  background-color: #000000d7;
   font-family: 'Viga', sans-serif;
   font-weight: bold;
   font-size: 50px;
@@ -63,7 +63,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100px; /* Ajustez la hauteur selon vos besoins */
-  background-color: #000000b2;
+  background-color: #000000d7;
   font-family: 'Viga', sans-serif;
   font-weight: bold;
   font-size: 25px;
@@ -75,7 +75,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100px; /* Ajustez la hauteur selon vos besoins */
-  background-color: #000000b2;
+  background-color: #000000d7;
   font-family: 'Viga', sans-serif;
   font-weight: bold;
   font-size: 20px;

@@ -90,7 +90,7 @@
   }
 
   .nav {
-    background-color: #000000b2;
+    background-color: #000000d7;
     display: flex;
     align-items: center;
     margin: 0;
@@ -115,7 +115,7 @@
 
   .nav li.active:hover {
     border-radius: 5px;
-    background-color: #000000b2;
+    background-color: #000000d7;
     color: white;
   }
 
@@ -126,7 +126,7 @@
   .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #000000b2;
+    background-color: #000000d7;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
@@ -137,6 +137,7 @@
   .dropdown:hover .dropdown-content {
     display: block;
     color: white;
+    list-style: none;
   }
 
   .dropdown-content ul {
@@ -146,6 +147,7 @@
   .dropdown-content ul li {
     text-decoration: none;
     color: white;
+    list-style: none;
   }
 
 .logo-container {

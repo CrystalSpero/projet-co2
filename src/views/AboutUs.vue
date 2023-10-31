@@ -16,7 +16,7 @@
 <style>
   .body {
     text-align: center;
-    background-color: #000000b2;
+    background-color: #000000d7;
     font-family: 'Viga', sans-serif;
     font-weight: bold;
     font-size: 20px;

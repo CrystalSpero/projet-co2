@@ -32,15 +32,19 @@
                 let user = decodeCredential(reponse.credential)
                 console.log("Je suis connecté " + user.name)
                 this.isGoogleLoggedIn = true
+                //Commit for the access to page
+                this.$store.commit('setUser', user.name)
+                //Commit to have the name in the Header
                 this.$store.commit('setUserName', user.name);
                 setTimeout(250)
             },
             Logout() {
                 this.isGoogleLoggedIn = false
+                this.$store.commit('setUser', null)
                 this.$store.commit('setUserName', null);
             },
 
-            //Méthode de connexion et déconnexion pour 
+            //Méthode de connexion et déconnexion pour Microsoft
             async signIn() {
                 await this.$store.dispatch('signIn')
                 this.$store.commit('setUserName', this.$store.state.user.name);

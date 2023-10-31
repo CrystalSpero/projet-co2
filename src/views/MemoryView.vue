@@ -13,7 +13,7 @@
         <!-- Region choose -->
         <label for="region">Region:</label>
         <select v-if="regions" v-model="region" id="region">
-            <option v-for="regiontxt in regions.cloud_providers[provider].cpu_regions" v-bind:key="regiontxt" :value="regiontxt"> {{regiontxt}}</option>
+            <option v-for="regiontxt in regions.cloud_providers[provider].memory_regions" v-bind:key="regiontxt" :value="regiontxt"> {{regiontxt}}</option>
         </select><br><br>
 
         <!-- Data choose -->
@@ -124,7 +124,7 @@ export default {
     
     .body {
         text-align: center;
-        background-color: #000000b2;
+        background-color: #000000d7;
         font-family: 'Viga', sans-serif;
         font-weight: bold;
         font-size: 25px;
