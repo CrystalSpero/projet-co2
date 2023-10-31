@@ -57,7 +57,7 @@ import store from '@/store';
 export default {
     name: 'StorageView',
     beforeRouteEnter (to , from, next) {
-        if (store.state.user && store.state.user.name) {
+        if (store.state.user || store.state.user.name) {
             next();
         } else {
             next('/');
