@@ -27,24 +27,19 @@
             <option value="first">First</option>
         </select><br><br>
 
-        <!-- Calculate the emissions of CO2e -->
+        <!-- Calculate the emissions of CO2e and generate the chart-->
         <button @click="Go">Calculate Emissions</button>
         <div v-if="emissions">
             <h2>Emissions Data:</h2>
             <p>{{ emissions.co2e.toFixed(4) + " kg of CO2e" }}</p>
         </div>
-
-        <!-- Chart Container -->
-        <div>
-            <canvas ref="myChart" style="width: 200;"></canvas>
-        </div>
-
+        <div id="emissionsChart"></div>
     </div>
 </template>
 
 <script>
 import store from '@/store';
-import Chart from 'chart.js/auto';
+import Highcharts from 'highcharts';
 
 export default {
     name: 'FlightsView',
@@ -65,7 +60,7 @@ export default {
             passengers: null,
             classs: null,
             legs: [],
-            myChart: null, 
+            chartData: [],
         };
     },
     computed: {
@@ -108,81 +103,57 @@ export default {
         Go() {
             const apiKey = "77K5DJ9QQSMFGYNN8PK8MAW6NEDY";
             const theUrl = `https://beta3.api.climatiq.io/travel/flights`;
+
             window.fetch(theUrl, {  
                 method: 'POST',
                 headers: {
-                    'Authorization' : 'Bearer ' + apiKey,
-                    'Accept' : 'application/json',
-                    'Content-Type': 'application/json;charset=utf-8'
+                'Authorization' : 'Bearer ' + apiKey,
+                'Accept' : 'application/json',
+                'Content-Type': 'application/json;charset=utf-8'
                 },
-                body: JSON.stringify ({
-                    "legs": [
-                        {
-                            "from": this.selectedFrom,
-                            "to": this.selectedTo,
-                            "passengers": this.passengers,
-                            "class": this.classs,
-                        }
-                    ]
+                body: JSON.stringify({
+                "legs": [
+                    {
+                    "from": this.selectedFrom,
+                    "to": this.selectedTo,
+                    "passengers": this.passengers,
+                    "class": this.classs,
+                    }
+                ]
                 })
             })
-            .then(this.httpCheckCodeAndParseJson) //if Ok, cyonvert to JSON
+            .then(this.httpCheckCodeAndParseJson)
             .then(data => {
                 this.emissions = data;
-                this.generateChartData(); // Use an arrow function to access this.generateChartData
-                })
-            .catch(err => console.log('Fetch went wrong : ', err))   //If error
-        },
 
-        //!Partie génération du graphique
-        
-        createChart(label, value) {
-            const ctx = this.$refs.myChart;
+                const label = `Flight : ${this.selectedFrom} => ${this.selectedTo}, Passengers : ${this.passengers}, Class : ${this.classs}`;
 
-            // Define layout options
-            const layoutOptions = {
-                fullSize: true, 
-            };
+                this.chartData.push({
+                    name: label,
+                    y: parseFloat(this.emissions.co2e.toFixed(4)), 
+                });
 
-            //Initialize the chart
-            this.myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: [label],
-                    datasets: [{
-                        label: 'CO2e Emissions',
-                        data: [value],
-                        backgroundColor: 'rgba(255, 255 , 0, 0.2)',
-                        borderColor: 'rgba(255, 255 , 0, 1)',
-                        borderWidth: 2,
-                    }],
+                const chartContainer = document.getElementById('emissionsChart');
+
+                Highcharts.chart(chartContainer, {
+                chart: {
+                    type: 'column',
                 },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                        },
+                title: {
+                    text: 'Comparison of flights in terms of CO2 emitted',
+                },
+                xAxis: {
+                    categories: this.chartData.map(item => item.name), 
+                },
+                series: [
+                    {
+                    name: 'Emissions',
+                    data: this.chartData,
                     },
-                },
-                plugins: {
-                    layout: layoutOptions,
-                },
-            });
-        },
-
-        generateChartData() {
-            // Extract data for the chart
-            const label = `${this.selectedFrom} - ${this.selectedTo}, Passengers: ${this.passengers}, Class: ${this.classs}`;
-            const value = this.emissions ? this.emissions.co2e : 0;
-
-            // Create or update the chart
-            if (this.myChart) {
-                this.myChart.data.labels = [label];
-                this.myChart.data.datasets[0].data = [value];
-                this.myChart.update();
-            } else {
-                this.createChart(label, value);
-            }
+                ],
+                });
+            })
+            .catch(err => console.log('Fetch went wrong : ', err))
         },
         httpCheckCodeAndParseJson (response) {
             return response.ok ? response.json() : Promise.reject(response.json())
