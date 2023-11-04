@@ -23,6 +23,10 @@
     ```
     npm install vue3-google-login@2.0.20
     ```
+    ### Highcharts
+    ```
+    npm install highcharts
+    ```
 
     ## Compiles and hot-reloads for development
     ```
@@ -34,4 +38,4 @@
 
     ## HomePage and AboutPage are open without login. To have an access to the application itself, you have to login with Microsoft or Google on the button's dropdown "Login".
     ## You just have to enter the value or choose the the option you want to have the emission you want to know.
-    ## In the FlightsPage, you have the access to a graph, when you ask multiple plane travel, you can see the difference between these differents plane travels.
+    ## In the FlightsPage, you have the access to a graph, when you ask multiple plane travel, you can see the difference between these differents plane travels by a chart.
